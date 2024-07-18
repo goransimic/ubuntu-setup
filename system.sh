@@ -3,11 +3,11 @@ setup_system() {
   sudo apt-get update
   sudo apt-get upgrade -y
   sudo apt-get install -y curl fonts-firacode git
-  sudo cp $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
-  sudo sysctl -p > /dev/null
-  cp $CONFIGS_DIR/bashrc ~/.bashrc
-  cp $CONFIGS_DIR/inputrc ~/.inputrc
-  cp $CONFIGS_DIR/aliases ~/.aliases
+  sudo cp -v $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
+  sudo sysctl -p
+  cp -v $CONFIGS_DIR/bashrc ~/.bashrc
+  cp -v $CONFIGS_DIR/inputrc ~/.inputrc
+  cp -v $CONFIGS_DIR/aliases ~/.aliases
 
   if $IS_DESKTOP; then
     sudo apt-get install -y dconf-editor flatpak gnome-shell-extension-manager gnome-sushi gnome-tweaks

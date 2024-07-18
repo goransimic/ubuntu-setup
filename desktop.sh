@@ -51,7 +51,7 @@ setup_gestures() {
   sudo usermod -aG input $USER
   cd -
   rm -rf /tmp/libinput-gestures
-  cp $CONFIGS_DIR/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
+  cp -v $CONFIGS_DIR/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
   libinput-gestures-setup service autostart start
 }
 
@@ -59,7 +59,7 @@ setup_flameshot() {
   echo "Setup Flameshot..."
   sudo apt-get install -y flameshot
   mkdir -p ~/.config/flameshot
-  cp $CONFIGS_DIR/flameshot.ini ~/.config/flameshot/flameshot.ini
+  cp -v $CONFIGS_DIR/flameshot.ini ~/.config/flameshot/flameshot.ini
 
   gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
@@ -71,7 +71,7 @@ setup_alacritty() {
   echo "Setup Alacritty..."
   sudo apt-get install -y alacritty
   mkdir -p ~/.config/alacritty
-  cp $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
+  cp -v $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
 }
 
 setup_desktop() {
