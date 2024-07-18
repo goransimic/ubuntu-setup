@@ -1,0 +1,15 @@
+# PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Aliases
+for FILE in ~/.*aliases; do
+  if [ -f "$FILE" ]; then
+    . "$FILE"
+  fi
+done
+
+# Init Oh-My-Zsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git docker docker-compose mise golang zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
+. "$ZSH/oh-my-zsh.sh"

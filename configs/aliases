@@ -1,0 +1,44 @@
+# System
+alias ls='ls -CF --group-directories-first --color'
+alias la='ls -A'
+alias ll='la -lhG'
+alias q='exit'
+alias c='clear'
+alias o='xdg-open'
+alias ..='cd ..'
+alias home='cd ~'
+alias root='cd /'
+
+# Tools
+alias g='git'
+alias d='docker'
+alias lzg='lazygit'
+alias lzd='lazydocker'
+alias gte='gnome-text-editor'
+alias ubuntu-setup='. ~/.local/share/ubuntu-setup/setup.sh'
+
+# Git
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+
+# APT
+alias apts='sudo apt search'
+alias apti='sudo apt install'
+alias aptu='sudo apt update && sudo apt upgrade'
+alias aptud='sudo apt update'
+alias aptug='sudo apt upgrade'
+alias aptr='sudo apt purge'
+alias apta='sudo apt autoremove'
+
+# SNAP
+alias snaps='sudo snap search'
+alias snapi='sudo snap install'
+alias snapu='sudo snap refresh'
+alias snapr='sudo snap remove --purge'
+
+# Flatpak
+alias fps='flatpak search'
+alias fpi='flatpak install'
+alias fpu='flatpak update'
+alias fpr='flatpak remove'
+alias fpa='flatpak remove --unused'

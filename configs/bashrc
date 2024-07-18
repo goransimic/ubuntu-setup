@@ -1,0 +1,34 @@
+# Prompt
+force_color_prompt=yes
+color_prompt=yes
+PS1=$'\uf0a9 '
+PS1="\[\e]0;\w\a\]$PS1"
+
+# History
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+HISTCONTROL=ignoreboth
+shopt -s histappend
+
+# File system
+shopt -s cdspell
+shopt -s autocd
+
+# PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+set +h
+
+# Aliases
+for FILE in ~/.*aliases; do
+  if [ -f "$FILE" ]; then
+    . "$FILE"
+  fi
+done
+
+# Autocompletion
+. /usr/share/bash-completion/bash_completion
+
+# Init Mise
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi
