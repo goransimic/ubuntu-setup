@@ -49,7 +49,7 @@ setup_gestures() {
   cd /tmp/libinput-gestures
   sudo ./libinput-gestures-setup install
   sudo usermod -aG input $USER
-  cd - >/dev/null
+  cd -
   rm -rf /tmp/libinput-gestures
   cp $CONFIGS_DIR/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
   libinput-gestures-setup service autostart start

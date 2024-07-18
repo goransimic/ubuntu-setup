@@ -1,6 +1,6 @@
 setup_system() {
   echo "Setup System..."
-  sudo apt-get update -y
+  sudo apt-get update
   sudo apt-get upgrade -y
   sudo apt-get install -y curl fonts-firacode git
   sudo cp $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
