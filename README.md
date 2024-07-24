@@ -4,13 +4,13 @@ Install and configure Ubuntu system
 
 ## Automatic Installation
 
-## Install
+### Install
 
 ```sh
 curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/install.sh | bash
 ```
 
-## Usage
+### Usage
 
 ```sh
 ubuntu-setup all|core|cli|desktop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|flameshot|alacritty
