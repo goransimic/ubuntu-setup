@@ -6,7 +6,7 @@ PS1="\[\e]0;\w\a\]$PS1"
 
 # History
 HISTSIZE=32768
-HISTFILESIZE="${HISTSIZE}"
+HISTFILESIZE=32768
 HISTCONTROL=ignoreboth
 shopt -s histappend
 
@@ -19,7 +19,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 set +h
 
 # Aliases
-for FILE in ~/.*aliases; do
+for FILE in "$HOME/.*aliases"; do
   if [ -f "$FILE" ]; then
     . "$FILE"
   fi

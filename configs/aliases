@@ -15,7 +15,6 @@ alias d='docker'
 alias lzg='lazygit'
 alias lzd='lazydocker'
 alias gte='gnome-text-editor'
-alias ubuntu-setup='. ~/.local/share/ubuntu-setup/setup.sh'
 
 # Git
 alias gcm='git commit -m'
@@ -25,8 +24,6 @@ alias gcam='git commit -a -m'
 alias apts='sudo apt search'
 alias apti='sudo apt install'
 alias aptu='sudo apt update && sudo apt upgrade'
-alias aptud='sudo apt update'
-alias aptug='sudo apt upgrade'
 alias aptr='sudo apt purge'
 alias apta='sudo apt autoremove'
 
