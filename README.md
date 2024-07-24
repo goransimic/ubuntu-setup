@@ -13,7 +13,7 @@ curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/install
 ## Usage
 
 ```sh
-ubuntu-setup `all|core|cli|destkop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|flameshot|alacritty`
+ubuntu-setup all|core|cli|destkop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|flameshot|alacritty
 ```
 
 ## Manual Installation
