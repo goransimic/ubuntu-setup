@@ -1,10 +1,10 @@
 on_force_close "quit"
 default_layout "compact"
-theme "dracula"
+theme "default"
 themes {
-  dracula {
+  default {
     fg 248 248 242
-    bg 40 42 54
+    bg 68 71 90
     black 0 0 0
     red 255 85 85
     green 80 250 123

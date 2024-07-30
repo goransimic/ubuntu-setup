@@ -10,6 +10,7 @@ alias home='cd ~'
 alias root='cd /'
 
 # Tools
+alias z='zeliij'
 alias g='git'
 alias d='docker'
 alias lzg='lazygit'
