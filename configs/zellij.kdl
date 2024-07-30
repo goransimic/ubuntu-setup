@@ -4,7 +4,7 @@ theme "default"
 themes {
   default {
     fg 248 248 242
-    bg 68 71 90
+    bg 68 71 90 #40 42 54
     black 0 0 0
     red 255 85 85
     green 80 250 123
