@@ -71,7 +71,6 @@ if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
   gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 
   gnome-extensions disable ding@rastersoft.com
-  gnome-extensions disable tiling-assistant@ubuntu.com
 fi
 ```
 
@@ -84,11 +83,13 @@ pipx install gnome-extensions-cli --system-site-packages
 gext install just-perfection-desktop@just-perfection
 gext install Vitals@CoreCoding.com
 gext install ddterm@amezin.github.com
+gext install marcs14@gmail.com
 gext install easy_docker_containers@red.software.systems
 
 sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/Vitals\@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/ddterm\@amezin.github.com/schemas/com.github.amezin.ddterm.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/marcs14\@gmail.com/schemas/org.gnome.shell.extensions.powertracker.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -117,6 +118,8 @@ gsettings set com.github.amezin.ddterm use-theme-colors false
 gsettings set com.github.amezin.ddterm window-above false
 gsettings set com.github.amezin.ddterm windows-size 0.5
 
+gsettings set org.gnome.shell.extensions.powertracker refreshrate 3
+
 gsettings set red.software.systems.easy_docker_containers refresh-delay 3
 ```
 
@@ -132,4 +135,84 @@ cd - > /dev/null
 rm -rf /tmp/libinput-gestures
 curl -sLo ~/.config/libinput-gestures.conf https://github.com/goransimic/ubuntu-setup/tree/master/configs/libinput-gestures.conf
 libinput-gestures-setup service autostart start
+```
+
+### ZSH
+
+```sh
+sudo apt-get install -y zsh
+chsh -s /bin/zsh
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+curl -sLo ~/.zshrc https://github.com/goransimic/ubuntu-setup/tree/master/configs/zshrc
+```
+
+### Zellij
+
+```sh
+curl -sLo /tmp/zellij.tar.gz https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
+tar -xf /tmp/zellij.tar.gz -C /tmp zellij
+sudo install /tmp/zellij /usr/local/bin
+rm /tmp/zellij.tar.gz /tmp/zellij
+mkdir -p ~/.config/zellij
+curl -sLo ~/.config/zellij/config.kdl https://github.com/goransimic/ubuntu-setup/tree/master/configs/zellij.kdl
+```
+
+### Docker
+
+```sh
+sudo apt-get install -y docker.io docker-buildx docker-compose-plugin
+sudo usermod -aG docker $USER
+```
+
+### Mise
+
+```sh
+curl -s https://mise.run | sh
+mise use --global node@lts
+mise use --global go@latest
+```
+
+### Lazygit
+
+```sh
+LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+curl -sLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+tar -xf /tmp/lazygit.tar.gz -C /tmp lazygit
+sudo install /tmp/lazygit /usr/local/bin
+rm /tmp/lazygit.tar.gz /tmp/lazygit
+```
+
+### Lazydocker
+
+```sh
+LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+curl -sLo /tmp/lazydocker.tar.gz https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz
+tar -xf /tmp/lazydocker.tar.gz -C /tmp lazydocker
+sudo install /tmp/lazydocker /usr/local/bin
+rm /tmp/lazydocker.tar.gz /tmp/lazydocker
+```
+
+### Flameshot
+
+```sh
+sudo apt-get install -y flameshot
+mkdir -p ~/.config/flameshot
+curl -sLo ~/.config/flameshot/flameshot.ini https://github.com/goransimic/ubuntu-setup/tree/master/configs/flameshot.ini
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'sh -c -- "flameshot gui"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>c'
+```
+
+### Alacritty
+
+```sh
+sudo apt-get install -y alacritty
+mkdir -p ~/.config/alacritty
+curl -sLo ~/.config/alacritty/alacritty.toml https://github.com/goransimic/ubuntu-setup/tree/master/configs/alacritty.toml
 ```
