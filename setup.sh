@@ -73,7 +73,6 @@ setup_system() {
     gsettings set org.gnome.shell.keybindings switch-to-application-9 "['<Alt>9']"
 
     gnome-extensions disable ding@rastersoft.com
-    gnome-extensions disable tiling-assistant@ubuntu.com
   fi
 }
 
@@ -85,11 +84,13 @@ setup_extensions() {
   gext install just-perfection-desktop@just-perfection
   gext install Vitals@CoreCoding.com
   gext install ddterm@amezin.github.com
+  gext install marcs14@gmail.com
   gext install easy_docker_containers@red.software.systems
 
   sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
   sudo cp ~/.local/share/gnome-shell/extensions/Vitals\@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
   sudo cp ~/.local/share/gnome-shell/extensions/ddterm\@amezin.github.com/schemas/com.github.amezin.ddterm.gschema.xml /usr/share/glib-2.0/schemas/
+  sudo cp ~/.local/share/gnome-shell/extensions/marcs14\@gmail.com/schemas/org.gnome.shell.extensions.powertracker.gschema.xml /usr/share/glib-2.0/schemas/
   sudo cp ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
   sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -117,6 +118,8 @@ setup_extensions() {
   gsettings set com.github.amezin.ddterm use-theme-colors false
   gsettings set com.github.amezin.ddterm window-above false
   gsettings set com.github.amezin.ddterm windows-size 0.5
+  
+  gsettings set org.gnome.shell.extensions.powertracker refreshrate 3
 
   gsettings set red.software.systems.easy_docker_containers refresh-delay 3
 }
