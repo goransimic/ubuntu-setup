@@ -4,10 +4,7 @@ alias la='ls -A'
 alias ll='la -lhG'
 alias q='exit'
 alias c='clear'
-alias o='xdg-open'
-alias ..='cd ..'
-alias home='cd ~'
-alias root='cd /'
+alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && flatpak update -y'
 
 # Tools
 alias z='zeliij'
