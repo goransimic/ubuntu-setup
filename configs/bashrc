@@ -15,14 +15,18 @@ shopt -s cdspell
 shopt -s autocd
 
 # PATH
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 set +h
+if [ -d "$HOME/bin" ]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/local/bin" ]; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Aliases
 for FILE in "$HOME"/.*aliases; do
-  if [ -f "$FILE" ]; then
-    . "$FILE"
-  fi
+  . "$FILE"
 done
 
 # Autocompletion
