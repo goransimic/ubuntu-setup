@@ -14,10 +14,6 @@ alias lzg='lazygit'
 alias lzd='lazydocker'
 alias gte='gnome-text-editor'
 
-# Git
-alias gcm='git commit -m'
-alias gcam='git commit -a -m'
-
 # APT
 alias apts='sudo apt search'
 alias apti='sudo apt install'
