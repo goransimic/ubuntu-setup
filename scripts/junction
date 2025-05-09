@@ -1,0 +1,38 @@
+#!/bin/bash
+
+CHOICE=$(
+  zenity --list \
+  --title="Open File/URL" \
+  --text="Choose browser and profile:" \
+  --width=480 --height=380 \
+  --column="Browser (Profile)" \
+  "Chrome (Default)" \
+  "Chrome (Work)" \
+  "Firefox (Default)" \
+  "Firefox (Work)" \
+)
+
+[ -z "$CHOICE" ] && exit 0
+
+case "$CHOICE" in
+  "Chrome (Default)")
+    CMD="google-chrome"
+    ARGS=(--profile-directory="Default")
+    ;;
+  "Chrome (Work)")
+    CMD="google-chrome"
+    ARGS=(--profile-directory="Profile 1")
+    ;;
+  "Firefox (Default)")
+    CMD="firefox"
+    ARGS=(-P "Default")
+    ;;
+  "Firefox (Work)")
+    CMD="firefox"
+    ARGS=(-P "Domonda")
+    ;;
+esac
+
+[ -n "$1" ] && ARGS+=("$1")
+
+nohup "$CMD" "${ARGS[@]}" >/dev/null 2>&1 &

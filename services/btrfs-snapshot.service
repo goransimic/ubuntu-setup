@@ -1,0 +1,10 @@
+[Unit]
+Description = Create BTRFS snapshots
+
+[Service]
+Type = oneshot
+ExecStart = /usr/local/bin/btrfs-snapshot
+ExecStart = /usr/local/bin/btrfs-snapshot-cleanup
+
+[Install]
+WantedBy = multi-user.target

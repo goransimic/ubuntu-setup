@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+SNAPSHOT_LIMIT=3
+SNAPSHOT_DIR="/.snapshots"
+
+if [[ ! -d "$SNAPSHOT_DIR" ]]; then
+  echo "Snapshots directory not found"
+  exit 1
+fi
+
+SNAPSHOT_COUNT=$(find "$SNAPSHOT_DIR" -mindepth 1 -maxdepth 1 -type d | wc -l)
+
+if (( SNAPSHOT_COUNT <= SNAPSHOT_LIMIT )); then
+  exit 0
+fi
+
+OLDEST_SNAPSHOT=$(find "$SNAPSHOT_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%T@ %f\n" | sort -n | head -n 1 | awk '{print $2}')
+
+if [[ -z "$SNAPSHOT_DIR/$OLDEST_SNAPSHOT" ]]; then
+  echo "No snapshots found"
+  exit 1
+fi
+
+btrfs subvolume delete "$SNAPSHOT_DIR/$OLDEST_SNAPSHOT" && echo "Deleted snapshot: $SNAPSHOT_DIR/$OLDEST_SNAPSHOT"
+
+exit 0

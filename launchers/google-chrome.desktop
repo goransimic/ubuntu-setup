@@ -1,0 +1,24 @@
+[Desktop Entry]
+Type=Application
+Name=Google Chrome
+Comment=Access the Internet
+Categories=Network;WebBrowser;
+Icon=google-chrome
+Exec=google-chrome --profile-directory="Default" %U
+MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
+Terminal=false
+StartupNotify=true
+StartupWMClass=google-chrome
+Actions=NewWindow;NewPrivateWindow;WorkProfile;
+
+[Desktop Action NewWindow]
+Name=New Window
+Exec=google-chrome --new-window --profile-directory="Default" %U
+
+[Desktop Action NewPrivateWindow]
+Name=New Incognito Window
+Exec=google-chrome --incognito --profile-directory="Default" %U
+
+[Desktop Action WorkProfile]
+Name=Work Profile
+Exec=google-chrome --profile-directory="Profile 1" %U

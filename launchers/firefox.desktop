@@ -1,0 +1,26 @@
+[Desktop Entry]
+Type=Application
+Name=Firefox
+Comment=Browse the World Wide Web
+Categories=Network;WebBrowser;
+Icon=/snap/firefox/current/default256.png
+Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox %U
+MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
+Terminal=false
+StartupNotify=true
+StartupWMClass=firefox
+X-SnapInstanceName=firefox
+Actions=NewWindow;NewPrivateWindow;WorkProfile;
+
+[Desktop Action NewWindow]
+Name=New Window
+Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -new-window
+
+[Desktop Action NewPrivateWindow]
+Name=New Private Window
+Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -private-window
+
+[Desktop Action WorkProfile]
+Name=Work Profile
+Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -P Domonda
+

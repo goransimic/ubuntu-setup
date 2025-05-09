@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Quake
+Comment=A fast, cross-platform, OpenGL terminal emulator
+Categories=System;TerminalEmulator;
+Icon=Alacritty
+Exec=alacritty --class Quake -T Quake -o 'window.decorations="None"'
+Terminal=false
+StartupNotify=true
+StartupWMClass=Quake

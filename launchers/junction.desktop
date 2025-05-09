@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Junction
+Comment=Junction lets you choose the application to open files and links
+Categories=Utility;
+Icon=junction
+Exec=junction %U
+MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
+Terminal=false
+StartupNotify=true
+NoDisplay=true

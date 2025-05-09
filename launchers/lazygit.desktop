@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Lazygit
+Comment=A simple terminal UI for git commands
+Categories=Development;RevisionControl;
+Icon=lazygit
+Exec=alacritty --class Git -T Git -o 'window.startup_mode="Maximized"' -e lazygit
+Terminal=false
+StartupNotify=true
+StartupWMClass=Git

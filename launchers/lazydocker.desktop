@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Lazydocker
+Comment=A simple terminal UI for both docker and docker-compose
+Categories=Development;
+Icon=lazydocker
+Exec=alacritty --class Docker -T Docker -o 'window.startup_mode="Maximized"' -e lazydocker
+Terminal=false
+StartupNotify=true
+StartupWMClass=Docker

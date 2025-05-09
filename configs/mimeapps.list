@@ -1,0 +1,35 @@
+[Default Applications]
+text/html=junction.desktop
+text/calendar=org.gnome.Calendar.desktop
+text/xml=junction.desktop
+image/gif=org.gnome.Loupe.desktop
+image/heic=org.gnome.Loupe.desktop
+image/jpeg=org.gnome.Loupe.desktop
+image/png=org.gnome.Loupe.desktop
+image/svg=org.gnome.Loupe.desktop
+image/webp=org.gnome.Loupe.desktop
+video/webm=junction.desktop
+application/pdf=junction.desktop
+application/xml=junction.desktop
+x-scheme-handler/http=junction.desktop
+x-scheme-handler/https=junction.desktop
+x-scheme-handler/mailto=org.gnome.Geary.desktop
+x-scheme-handler/webcal=junction.desktop
+
+[Added Associations]
+text/html=junction.desktop;
+text/calendar=org.gnome.Calendar.desktop
+text/xml=junction.desktop
+image/gif=org.gnome.Loupe.desktop
+image/heic=org.gnome.Loupe.desktop
+image/jpeg=org.gnome.Loupe.desktop
+image/png=org.gnome.Loupe.desktop
+image/svg=org.gnome.Loupe.desktop
+image/webp=org.gnome.Loupe.desktop
+video/webm=junction.desktop
+application/pdf=junction.desktop
+application/xml=junction.desktop
+x-scheme-handler/http=junction.desktop
+x-scheme-handler/https=junction.desktop
+x-scheme-handler/mailto=org.gnome.Geary.desktop
+x-scheme-handler/webcal=junction.desktop

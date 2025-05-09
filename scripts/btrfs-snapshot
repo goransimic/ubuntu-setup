@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+SNAPSHOT_DIR="/.snapshots"
+SNAPSHOT_FORMAT="$(hostname)-$(date +%Y-%m-%d_%H-%M-%S)"
+
+if [[ ! -d "$SNAPSHOT_DIR" ]]; then
+  echo "Snapshots directory not found"
+  exit 1
+fi
+
+btrfs subvolume snapshot -r / "$SNAPSHOT_DIR/$SNAPSHOT_FORMAT" && echo "Created snapshot: $SNAPSHOT_DIR/$SNAPSHOT_FORMAT"
+
+exit 0
