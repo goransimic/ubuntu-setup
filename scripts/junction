@@ -35,4 +35,4 @@ esac
 
 [ -n "$1" ] && ARGS+=("$1")
 
-nohup "$CMD" "${ARGS[@]}" >/dev/null 2>&1 &
+nohup "$CMD" "${ARGS[@]}" > /dev/null 2>&1 &
