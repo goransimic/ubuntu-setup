@@ -1,7 +1,7 @@
 # System
 alias ls='ls -CF --group-directories-first --color'
-alias la='ls -A'
-alias ll='la -lhG'
+alias la='ls -a'
+alias ll='la -lh'
 alias q='exit'
 alias c='clear'
 alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && flatpak update -y'
