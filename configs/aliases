@@ -1,13 +1,14 @@
 # System
 alias ls='ls -CF --group-directories-first --color'
-alias la='ls -a'
-alias ll='la -lh'
+alias l='ls -alh'
+alias la='ls -Ah'
+alias ll='ls -lh'
 alias q='exit'
 alias c='clear'
 alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && flatpak update -y'
 
 # Tools
-alias z='zeliij'
+alias z='zellij'
 alias g='git'
 alias d='docker'
 alias lzg='lazygit'

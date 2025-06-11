@@ -7,11 +7,6 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Aliases
-for FILE in "$HOME"/.*aliases(N); do
-  . "$FILE"
-done
-
 # Init Oh-My-Zsh
 if [ -d "$HOME/.oh-my-zsh" ]; then
   ZSH="$HOME/.oh-my-zsh"
@@ -19,3 +14,8 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
   plugins=(git docker docker-compose mise golang zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
   . "$ZSH/oh-my-zsh.sh"
 fi
+
+# Aliases
+for FILE in "$HOME"/.*aliases(N); do
+  . "$FILE"
+done
