@@ -200,6 +200,24 @@ setup_alacritty() {
   cp $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
 }
 
+setup_cursor() {
+  echo "Setup Cursor..."
+  CURSOR_URL=$(curl -s https://cursor.com/api/download?platform=linux-x64&releaseTrack=latest | jq -r '.downloadUrl')
+  curl -sLo /tmp/cursor.appimage $CURSOR_URL
+  chmod +x /tmp/cursor.appimage
+  cd /tmp && ./cursor.appimage --appimage-extract && cd - > /dev/null
+  sudo rm -rf /opt/cursor
+  sudo mv /tmp/squashfs-root /opt/cursor
+  sudo chmod 4755 /opt/cursor/usr/share/cursor/chrome-sandbox
+  sudo chown -R root:root /opt/cursor
+  sudo ln -sf /opt/cursor/AppRun /usr/local/bin/cursor
+  rm /tmp/cursor.appimage
+  mkdir -p ~/.local/share/applications
+  cp $LAUNCHERS_DIR/cursor.desktop ~/.local/share/applications/cursor.desktop
+  update-desktop-database ~/.local/share/applications
+
+}
+
 setup_junction() {
   echo "Setup Junction..."
   sudo install $SCRIPTS_DIR/junction /usr/local/bin
@@ -228,6 +246,7 @@ setup_cli() {
 setup_desktop() {
   setup_flameshot
   setup_alacritty
+  setup_cursor
   setup_junction
 }
 
@@ -255,6 +274,7 @@ case $1 in
   "lazydocker") setup_lazydocker ;;
   "flameshot") [[ $RUNNING_GNOME ]] && setup_flameshot ;;
   "alacrity") [[ $RUNNING_GNOME ]] && setup_alacritty ;;
+  "cursor") setup_cursor ;;
   "junction") [[ $RUNNING_GNOME ]] && setup_junction ;;
   "update") update ;;
 esac

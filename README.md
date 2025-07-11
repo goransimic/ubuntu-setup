@@ -186,7 +186,7 @@ update-desktop-database ~/.local/share/applications
 LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
 curl -sLo /tmp/lazydocker.tar.gz https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz
 tar -xf /tmp/lazydocker.tar.gz -C /tmp lazydocker
-sudo install /tmp/lazydocker /usr/local/bin
+sudo install /tmp/lazydocker /usr/local/bin`
 rm /tmp/lazydocker.tar.gz /tmp/lazydocker
 mkdir -p ~/.local/share/{applications,icons}
 curl -sLo ~/.local/share/icons/lazydocker.png https://github.com/goransimic/ubuntu-setup/tree/master/icons/lazydocker.png
@@ -213,6 +213,23 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/o
 sudo apt-get install -y alacritty
 mkdir -p ~/.config/alacritty
 curl -sLo ~/.config/alacritty/alacritty.toml https://github.com/goransimic/ubuntu-setup/tree/master/configs/alacritty.toml
+```
+
+### Cursor
+
+```sh
+CURSOR_URL=$(curl -s 'https://cursor.com/api/download?platform=linux-x64&releaseTrack=latest' | jq -r '.downloadUrl')
+curl -sLo /tmp/cursor.appimage $CURSOR_URL
+chmod +x /tmp/cursor.appimage
+cd /tmp && ./cursor.appimage --appimage-extract && cd - > /dev/null
+sudo rm -rf /opt/cursor
+sudo mv /tmp/squashfs-root /opt/cursor
+sudo chown -R root:root /opt/cursor
+sudo chmod 4755 /opt/cursor/usr/share/cursor/chrome-sandbox
+rm /tmp/cursor.appimage
+mkdir -p ~/.local/share/applications
+curl -sLo ~/.local/share/applications/cursor.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/cursor.desktop
+update-desktop-database ~/.local/share/applications
 ```
 
 ### Junction
