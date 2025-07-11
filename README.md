@@ -30,11 +30,11 @@ ubuntu-setup all|core|cli|desktop|system|extensions|gestures|zsh|zellij|docker|m
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y curl fonts-firacode git
-sudo curl -sLo /etc/sysctl/local.conf https://github.com/goransimic/ubuntu-setup/tree/master/configs/sysctl.conf
+sudo curl -sLo /etc/sysctl/local.conf https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/sysctl.conf
 sudo sysctl -qp
-curl -sLo ~/.bashrc https://github.com/goransimic/ubuntu-setup/tree/master/configs/bashrc
-curl -sLo ~/.inputrc https://github.com/goransimic/ubuntu-setup/tree/master/configs/inputrc
-curl -sLo ~/.aliases https://github.com/goransimic/ubuntu-setup/tree/master/configs/aliases
+curl -sLo ~/.bashrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/bashrc
+curl -sLo ~/.inputrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/inputrc
+curl -sLo ~/.aliases https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/aliases
 
 if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
   sudo apt-get install -y dconf-editor flatpak gnome-shell-extension-manager gnome-sushi gnome-tweaks
@@ -86,11 +86,11 @@ fi
 sudo apt-get install -y pipx
 pipx install gnome-extensions-cli --system-site-packages
 
-curl -sLo /tmp/resource-monitor\@goransimic.zip https://github.com/goransimic/ubuntu-setup/tree/master/extensions/resource-monitor\@goransimic.zip
+curl -sLo /tmp/resource-monitor\@goransimic.zip https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/extensions/resource-monitor\@goransimic.zip
 gnome-extensions install -f /tmp/resource-monitor\@goransimic.zip
 rm /tmp/resource-monitor\@goransimic.zip
 
-curl -sLo /tmp/window-mover\@goransimic.zip https://github.com/goransimic/ubuntu-setup/tree/master/extensions/window-mover\@goransimic.zip
+curl -sLo /tmp/window-mover\@goransimic.zip https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/extensions/window-mover\@goransimic.zip
 gnome-extensions install -f /tmp/window-mover\@goransimic.zip
 rm /tmp/window-mover\@goransimic.zip
 
@@ -120,7 +120,7 @@ sudo ./libinput-gestures-setup install
 sudo usermod -aG input $USER
 cd - > /dev/null
 rm -rf /tmp/libinput-gestures
-curl -sLo ~/.config/libinput-gestures.conf https://github.com/goransimic/ubuntu-setup/tree/master/configs/libinput-gestures.conf
+curl -sLo ~/.config/libinput-gestures.conf https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/libinput-gestures.conf
 libinput-gestures-setup service autostart start
 ```
 
@@ -134,7 +134,7 @@ git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-curl -sLo ~/.zshrc https://github.com/goransimic/ubuntu-setup/tree/master/configs/zshrc
+curl -sLo ~/.zshrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zshrc
 ```
 
 ### Zellij
@@ -145,7 +145,7 @@ tar -xf /tmp/zellij.tar.gz -C /tmp zellij
 sudo install /tmp/zellij /usr/local/bin
 rm /tmp/zellij.tar.gz /tmp/zellij
 mkdir -p ~/.config/zellij
-curl -sLo ~/.config/zellij/config.kdl https://github.com/goransimic/ubuntu-setup/tree/master/configs/zellij.kdl
+curl -sLo ~/.config/zellij/config.kdl https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zellij.kdl
 ```
 
 ### Docker
@@ -175,8 +175,8 @@ tar -xf /tmp/lazygit.tar.gz -C /tmp lazygit
 sudo install /tmp/lazygit /usr/local/bin
 rm /tmp/lazygit.tar.gz /tmp/lazygit
 mkdir -p ~/.local/share/{applications,icons}
-curl -sLo ~/.local/share/icons/lazygit.png https://github.com/goransimic/ubuntu-setup/tree/master/icons/lazygit.png
-curl -sLo ~/.local/share/applications/lazygit.desktop https://github.com/goransimic/ubuntu-setup/tree/master/launchers/lazygit.desktop
+curl -sLo ~/.local/share/icons/lazygit.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/lazygit.png
+curl -sLo ~/.local/share/applications/lazygit.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/lazygit.desktop
 update-desktop-database ~/.local/share/applications
 ```
 
@@ -189,8 +189,8 @@ tar -xf /tmp/lazydocker.tar.gz -C /tmp lazydocker
 sudo install /tmp/lazydocker /usr/local/bin`
 rm /tmp/lazydocker.tar.gz /tmp/lazydocker
 mkdir -p ~/.local/share/{applications,icons}
-curl -sLo ~/.local/share/icons/lazydocker.png https://github.com/goransimic/ubuntu-setup/tree/master/icons/lazydocker.png
-curl -sLo ~/.local/share/applications/lazydocker.desktop https://github.com/goransimic/ubuntu-setup/tree/master/launchers/lazydocker.desktop
+curl -sLo ~/.local/share/icons/lazydocker.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/lazydocker.png
+curl -sLo ~/.local/share/applications/lazydocker.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/lazydocker.desktop
 update-desktop-database ~/.local/share/applications
 ```
 
@@ -199,7 +199,7 @@ update-desktop-database ~/.local/share/applications
 ```sh
 sudo apt-get install -y flameshot
 mkdir -p ~/.config/flameshot
-curl -sLo ~/.config/flameshot/flameshot.ini https://github.com/goransimic/ubuntu-setup/tree/master/configs/flameshot.ini
+curl -sLo ~/.config/flameshot/flameshot.ini https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/flameshot.ini
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
@@ -212,7 +212,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/o
 ```sh
 sudo apt-get install -y alacritty
 mkdir -p ~/.config/alacritty
-curl -sLo ~/.config/alacritty/alacritty.toml https://github.com/goransimic/ubuntu-setup/tree/master/configs/alacritty.toml
+curl -sLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/alacritty.toml
 ```
 
 ### Cursor
@@ -235,12 +235,12 @@ update-desktop-database ~/.local/share/applications
 ### Junction
 
 ```sh
-curl -sLo /tmp/junction https://github.com/goransimic/ubuntu-setup/tree/master/scripts/junction
+curl -sLo /tmp/junction https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/scripts/junction
 sudo install /tmp/junction /usr/local/bin
 rm /tmp/junction
 mkdir -p ~/.local/share/{applications,icons}
-curl -sLo ~/.local/share/icons/junction.png https://github.com/goransimic/ubuntu-setup/tree/master/icons/junction.png
-curl -sLo ~/.local/share/applications/junction.desktop https://github.com/goransimic/ubuntu-setup/tree/master/launchers/junction.desktop
-curl -sLo ~/.config/mimeapps.list https://github.com/goransimic/ubuntu-setup/tree/master/configs/mimeapps.list
+curl -sLo ~/.local/share/icons/junction.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/junction.png
+curl -sLo ~/.local/share/applications/junction.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/junction.desktop
+curl -sLo ~/.config/mimeapps.list https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/mimeapps.list
 update-desktop-database ~/.local/share/applications
 ```
