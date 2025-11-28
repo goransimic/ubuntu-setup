@@ -5,7 +5,7 @@ Setup Ubuntu system
 ## Automatic Setup
 
 ```sh
-curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/install.sh | bash -s -- all|core|cli|desktop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|alacritty|junction
+curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/setup.sh | bash -s -- all|core|cli|desktop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|alacritty|junction
 ```
 
 ## Manual Setup
