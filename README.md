@@ -22,7 +22,7 @@ curl -sLo ~/.aliases https://raw.githubusercontent.com/goransimic/ubuntu-setup/r
 
 if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
   sudo apt-get install -y dconf-editor flatpak gnome-shell-extension-manager gnome-sushi gnome-tweaks
-  sudo ln -sf /var/lib/snapd/snap /snap
+  sudo ln -sfv /var/lib/snapd/snap /snap
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
   gsettings set org.gnome.desktop.app-folders folder-children "['']"
@@ -95,9 +95,9 @@ gext install current-monitor-window-app-switcher@thmatosbr
 gext install easy_docker_containers@red.software.systems
 gext install just-perfection-desktop@just-perfection
 
-sudo cp ~/.local/share/gnome-shell/extensions/current-monitor-window-app-switcher\@thmatosbr/schemas/org.gnome.shell.extensions.current-monitor-window-app-switcher.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp -v ~/.local/share/gnome-shell/extensions/current-monitor-window-app-switcher\@thmatosbr/schemas/org.gnome.shell.extensions.current-monitor-window-app-switcher.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp -v ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp -v ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 gsettings set red.software.systems.easy_docker_containers refresh-delay 3
@@ -126,11 +126,11 @@ libinput-gestures-setup service autostart start
 ```sh
 sudo apt-get install -y zsh
 chsh -s /bin/zsh
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
-git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+git clone -q https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+git clone -q https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone -q https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone -q https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 curl -sLo ~/.zshrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zshrc
 ```
 
@@ -139,9 +139,9 @@ curl -sLo ~/.zshrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/ref
 ```sh
 curl -sLo /tmp/zellij.tar.gz https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
 tar -xf /tmp/zellij.tar.gz -C /tmp zellij
-sudo install /tmp/zellij /usr/local/bin
+sudo install -v /tmp/zellij /usr/local/bin
 rm /tmp/zellij.tar.gz /tmp/zellij
-mkdir -p ~/.config/zellij
+mkdir -pv ~/.config/zellij
 curl -sLo ~/.config/zellij/config.kdl https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zellij.kdl
 ```
 
@@ -169,9 +169,9 @@ mise use --global go@latest
 LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
 curl -sLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
 tar -xf /tmp/lazygit.tar.gz -C /tmp lazygit
-sudo install /tmp/lazygit /usr/local/bin
+sudo install -v /tmp/lazygit /usr/local/bin
 rm /tmp/lazygit.tar.gz /tmp/lazygit
-mkdir -p ~/.local/share/{applications,icons}
+mkdir -pv ~/.local/share/{applications,icons}
 curl -sLo ~/.local/share/icons/lazygit.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/lazygit.png
 curl -sLo ~/.local/share/applications/lazygit.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/lazygit.desktop
 update-desktop-database ~/.local/share/applications
@@ -183,9 +183,9 @@ update-desktop-database ~/.local/share/applications
 LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
 curl -sLo /tmp/lazydocker.tar.gz https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz
 tar -xf /tmp/lazydocker.tar.gz -C /tmp lazydocker
-sudo install /tmp/lazydocker /usr/local/bin`
+sudo install -v /tmp/lazydocker /usr/local/bin
 rm /tmp/lazydocker.tar.gz /tmp/lazydocker
-mkdir -p ~/.local/share/{applications,icons}
+mkdir -pv ~/.local/share/{applications,icons}
 curl -sLo ~/.local/share/icons/lazydocker.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/lazydocker.png
 curl -sLo ~/.local/share/applications/lazydocker.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/lazydocker.desktop
 update-desktop-database ~/.local/share/applications
@@ -195,7 +195,7 @@ update-desktop-database ~/.local/share/applications
 
 ```sh
 sudo apt-get install -y alacritty
-mkdir -p ~/.config/alacritty
+mkdir -pv ~/.config/alacritty
 curl -sLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/alacritty.toml
 ```
 
@@ -203,9 +203,9 @@ curl -sLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/g
 
 ```sh
 curl -sLo /tmp/junction https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/scripts/junction
-sudo install /tmp/junction /usr/local/bin
+sudo install -v /tmp/junction /usr/local/bin
 rm /tmp/junction
-mkdir -p ~/.local/share/{applications,icons}
+mkdir -pv ~/.local/share/{applications,icons}
 curl -sLo ~/.local/share/icons/junction.png https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/icons/junction.png
 curl -sLo ~/.local/share/applications/junction.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/junction.desktop
 curl -sLo ~/.config/mimeapps.list https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/mimeapps.list
