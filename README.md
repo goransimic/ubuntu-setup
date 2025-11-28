@@ -32,8 +32,6 @@ sudo apt-get upgrade -y
 sudo apt-get install -y curl fonts-firacode git
 sudo curl -sLo /etc/sysctl/local.conf https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/sysctl.conf
 sudo sysctl -qp
-curl -sLo ~/.bashrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/bashrc
-curl -sLo ~/.inputrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/inputrc
 curl -sLo ~/.aliases https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/aliases
 
 if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
@@ -45,27 +43,31 @@ if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
   gsettings set org.gnome.desktop.interface clock-show-date false
   gsettings set org.gnome.desktop.notifications show-in-lock-screen false
   gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
-  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
-  gsettings set org.gnome.desktop.privacy report-technical-problems false
   gsettings set org.gnome.desktop.session idle-delay 0
+  gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
   gsettings set org.gnome.desktop.wm.keybindings switch-group "[]"
   gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>3']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>4']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
   gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>f']"
   gsettings set org.gnome.desktop.wm.preferences auto-raise true
-  gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-  gsettings set org.gnome.mutter attach-modal-dialogs false
-  gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
+  gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 22.0
   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 6.0
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screen-reader "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys screenreader "[]"
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
   gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1800
-  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
   gsettings set org.gnome.shell app-picker-layout "[]"
   gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
   gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
@@ -75,6 +77,15 @@ if [[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]]; then
   gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
   gsettings set org.gnome.shell.extensions.ding show-home false
   gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
+  gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Alt>1']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Alt>2']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-3 "['<Alt>3']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-4 "['<Alt>4']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-5 "['<Alt>5']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-6 "['<Alt>6']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-7 "['<Alt>7']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-8 "['<Alt>8']"
+  gsettings set org.gnome.shell.keybindings switch-to-application-9 "['<Alt>9']"
 
   gnome-extensions disable ding@rastersoft.com
 fi
@@ -90,9 +101,9 @@ curl -sLo /tmp/resource-monitor\@goransimic.zip https://raw.githubusercontent.co
 gnome-extensions install -f /tmp/resource-monitor\@goransimic.zip
 rm /tmp/resource-monitor\@goransimic.zip
 
-curl -sLo /tmp/window-mover\@goransimic.zip https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/extensions/window-mover\@goransimic.zip
-gnome-extensions install -f /tmp/window-mover\@goransimic.zip
-rm /tmp/window-mover\@goransimic.zip
+curl -sLo /tmp/window-sizer\@goransimic.zip https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/extensions/window-sizer\@goransimic.zip
+gnome-extensions install -f /tmp/window-sizer\@goransimic.zip
+rm /tmp/window-sizer\@goransimic.zip
 
 gext install current-monitor-window-app-switcher@thmatosbr
 gext install easy_docker_containers@red.software.systems
@@ -194,42 +205,12 @@ curl -sLo ~/.local/share/applications/lazydocker.desktop https://raw.githubuserc
 update-desktop-database ~/.local/share/applications
 ```
 
-### Flameshot
-
-```sh
-sudo apt-get install -y flameshot
-mkdir -p ~/.config/flameshot
-curl -sLo ~/.config/flameshot/flameshot.ini https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/flameshot.ini
-
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'sh -c -- "flameshot gui"'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>c'
-```
-
 ### Alacritty
 
 ```sh
 sudo apt-get install -y alacritty
 mkdir -p ~/.config/alacritty
 curl -sLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/alacritty.toml
-```
-
-### Cursor
-
-```sh
-CURSOR_URL=$(curl -s 'https://cursor.com/api/download?platform=linux-x64&releaseTrack=latest' | jq -r '.downloadUrl')
-curl -sLo /tmp/cursor.appimage $CURSOR_URL
-chmod +x /tmp/cursor.appimage
-cd /tmp && ./cursor.appimage --appimage-extract && cd - > /dev/null
-sudo rm -rf /opt/cursor
-sudo mv /tmp/squashfs-root /opt/cursor
-sudo chown -R root:root /opt/cursor
-sudo chmod 4755 /opt/cursor/usr/share/cursor/chrome-sandbox
-rm /tmp/cursor.appimage
-mkdir -p ~/.local/share/applications
-curl -sLo ~/.local/share/applications/cursor.desktop https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/launchers/cursor.desktop
-update-desktop-database ~/.local/share/applications
 ```
 
 ### Junction
