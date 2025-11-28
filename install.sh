@@ -14,13 +14,13 @@ setup_system() {
   sudo apt-get update
   sudo apt-get upgrade -y
   sudo apt-get install -y curl fonts-firacode git
-  sudo cp $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
+  sudo cp -v $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
   sudo sysctl -qp
-  cp $CONFIGS_DIR/aliases ~/.aliases
+  cp -v $CONFIGS_DIR/aliases ~/.aliases
 
   if $RUNNING_GNOME; then
     sudo apt-get install -y dconf-editor flatpak gnome-shell-extension-manager gnome-sushi gnome-tweaks
-    sudo ln -sf /var/lib/snapd/snap /snap
+    sudo ln -sfv /var/lib/snapd/snap /snap
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     gsettings set org.gnome.desktop.app-folders folder-children "['']"
@@ -87,9 +87,9 @@ setup_extensions() {
   gext install easy_docker_containers@red.software.systems
   gext install just-perfection-desktop@just-perfection
 
-  sudo cp ~/.local/share/gnome-shell/extensions/current-monitor-window-app-switcher\@thmatosbr/schemas/org.gnome.shell.extensions.current-monitor-window-app-switcher.gschema.xml /usr/share/glib-2.0/schemas/
-  sudo cp ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
-  sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
+  sudo cp -v ~/.local/share/gnome-shell/extensions/current-monitor-window-app-switcher\@thmatosbr/schemas/org.gnome.shell.extensions.current-monitor-window-app-switcher.gschema.xml /usr/share/glib-2.0/schemas/
+  sudo cp -v ~/.local/share/gnome-shell/extensions/easy_docker_containers\@red.software.systems/schemas/red.software.systems.easy_docker_containers.gschema.xml /usr/share/glib-2.0/schemas/
+  sudo cp -v ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
   sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
   gsettings set red.software.systems.easy_docker_containers refresh-delay 3
@@ -101,13 +101,13 @@ setup_extensions() {
 setup_gestures() {
   echo "Setup Gestures..."
   sudo apt-get install -y wmctrl xdotool libinput-tools
-  git clone https://github.com/bulletmark/libinput-gestures.git /tmp/libinput-gestures
+  git clone -q https://github.com/bulletmark/libinput-gestures.git /tmp/libinput-gestures
   cd /tmp/libinput-gestures
   sudo ./libinput-gestures-setup install
   sudo usermod -aG input $USER
   cd - > /dev/null
   rm -rf /tmp/libinput-gestures
-  cp $CONFIGS_DIR/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
+  cp -v $CONFIGS_DIR/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
   libinput-gestures-setup service autostart start
 }
 
@@ -115,22 +115,22 @@ setup_zsh() {
   echo "Setup ZSH..."
   sudo apt-get install -y zsh
   chsh -s /bin/zsh
-  git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-  git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-  cp $CONFIGS_DIR/zshrc ~/.zshrc
+  git clone -q https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  git clone -q https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+  git clone -q https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone -q https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+  cp -v $CONFIGS_DIR/zshrc ~/.zshrc
 }
 
 setup_zellij() {
   echo "Setup Zellij..."
   curl -sLo /tmp/zellij.tar.gz https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
   tar -xf /tmp/zellij.tar.gz -C /tmp zellij
-  sudo install /tmp/zellij /usr/local/bin
+  sudo install -v /tmp/zellij /usr/local/bin
   rm /tmp/zellij.tar.gz /tmp/zellij
-  mkdir -p ~/.config/zellij
-  cp $CONFIGS_DIR/zellij.kdl ~/.config/zellij/config.kdl
+  mkdir -pv ~/.config/zellij
+  cp -v $CONFIGS_DIR/zellij.kdl ~/.config/zellij/config.kdl
 }
 
 setup_docker() {
@@ -152,43 +152,43 @@ setup_mise() {
 setup_lazygit() {
   echo "Setup Lazygit..."
   LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
-  curl -sLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+  curl -sLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
   tar -xf /tmp/lazygit.tar.gz -C /tmp lazygit
-  sudo install /tmp/lazygit /usr/local/bin
+  sudo install -v /tmp/lazygit /usr/local/bin
   rm /tmp/lazygit.tar.gz /tmp/lazygit
-  mkdir -p ~/.local/share/{applications,icons}
-  cp $ICONS_DIR/lazygit.png ~/.local/share/icons/lazygit.png
-  cp $LAUNCHERS_DIR/lazygit.desktop ~/.local/share/applications/lazygit.desktop
+  mkdir -pv ~/.local/share/{applications,icons}
+  cp -v $ICONS_DIR/lazygit.png ~/.local/share/icons/lazygit.png
+  cp -v $LAUNCHERS_DIR/lazygit.desktop ~/.local/share/applications/lazygit.desktop
   update-desktop-database ~/.local/share/applications
 }
 
 setup_lazydocker() {
   echo "Setup Lazydocker..."
   LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
-  curl -sLo /tmp/lazydocker.tar.gz https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz
+  curl -sLo /tmp/lazydocker.tar.gz https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz
   tar -xf /tmp/lazydocker.tar.gz -C /tmp lazydocker
-  sudo install /tmp/lazydocker /usr/local/bin
+  sudo install -v /tmp/lazydocker /usr/local/bin
   rm /tmp/lazydocker.tar.gz /tmp/lazydocker
-  mkdir -p ~/.local/share/{applications,icons}
-  cp $ICONS_DIR/lazydocker.png ~/.local/share/icons/lazydocker.png
-  cp $LAUNCHERS_DIR/lazydocker.desktop ~/.local/share/applications/lazydocker.desktop
+  mkdir -pv ~/.local/share/{applications,icons}
+  cp -v $ICONS_DIR/lazydocker.png ~/.local/share/icons/lazydocker.png
+  cp -v $LAUNCHERS_DIR/lazydocker.desktop ~/.local/share/applications/lazydocker.desktop
   update-desktop-database ~/.local/share/applications
 }
 
 setup_alacritty() {
   echo "Setup Alacritty..."
   sudo apt-get install -y alacritty
-  mkdir -p ~/.config/alacritty
-  cp $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
+  mkdir -pv ~/.config/alacritty
+  cp -v $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
 }
 
 setup_junction() {
   echo "Setup Junction..."
-  sudo install $SCRIPTS_DIR/junction /usr/local/bin
-  mkdir -p ~/.local/share/{applications,icons}
-  cp $ICONS_DIR/junction.png ~/.local/share/icons/junction.png
-  cp $LAUNCHERS_DIR/junction.desktop ~/.local/share/applications/junction.desktop
-  cp $CONFIGS_DIR/mimeapps.list ~/.config/mimeapps.list
+  sudo install -v $SCRIPTS_DIR/junction /usr/local/bin
+  mkdir -pv ~/.local/share/{applications,icons}
+  cp -v $ICONS_DIR/junction.png ~/.local/share/icons/junction.png
+  cp -v $LAUNCHERS_DIR/junction.desktop ~/.local/share/applications/junction.desktop
+  cp -v $CONFIGS_DIR/mimeapps.list ~/.config/mimeapps.list
   update-desktop-database ~/.local/share/applications
 }
 
@@ -221,7 +221,7 @@ setup_all() {
 echo "Installing Ubuntu Setup..."
 sudo apt-get update > /dev/null
 sudo apt-get install -y git > /dev/null
-git clone https://github.com/goransimic/ubuntu-setup.git $ROOT_DIR
+git clone -q https://github.com/goransimic/ubuntu-setup.git $ROOT_DIR
 cd $ROOT_DIR
 case $1 in
   "all") setup_all ;;
