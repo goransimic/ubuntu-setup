@@ -6,7 +6,6 @@ EXTENSIONS_DIR=$ROOT_DIR/extensions
 ICONS_DIR=$ROOT_DIR/icons
 LAUNCHERS_DIR=$ROOT_DIR/launchers
 SCRIPTS_DIR=$ROOT_DIR/scripts
-SERVICES_DIR=$ROOT_DIR/services
 
 RUNNING_GNOME=$([[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]] && echo true || echo false)
 
