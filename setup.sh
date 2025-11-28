@@ -224,6 +224,9 @@ case $1 in
   "core") setup_core ;;
   "cli") setup_cli ;;
   "desktop") [[ $RUNNING_GNOME ]] && setup_desktop ;;
+  "system") setup_system ;;
+  "extensions") [[ $RUNNING_GNOME ]] && setup_extensions ;;
+  "gestures") [[ $RUNNING_GNOME ]] && setup_gestures ;;
   "zsh") setup_zsh ;;
   "zellij") setup_zellij ;;
   "docker") setup_docker ;;
