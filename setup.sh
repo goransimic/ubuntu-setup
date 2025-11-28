@@ -17,8 +17,6 @@ setup_system() {
   sudo apt-get install -y curl fonts-firacode git
   sudo cp $CONFIGS_DIR/sysctl.conf /etc/sysctl/local.conf
   sudo sysctl -qp
-  cp $CONFIGS_DIR/bashrc ~/.bashrc
-  cp $CONFIGS_DIR/inputrc ~/.inputrc
   cp $CONFIGS_DIR/aliases ~/.aliases
 
   if $RUNNING_GNOME; then
@@ -30,8 +28,6 @@ setup_system() {
     gsettings set org.gnome.desktop.interface clock-show-date false
     gsettings set org.gnome.desktop.notifications show-in-lock-screen false
     gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
-    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
-    gsettings set org.gnome.desktop.privacy report-technical-problems false
     gsettings set org.gnome.desktop.session idle-delay 0
     gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
     gsettings set org.gnome.desktop.wm.keybindings switch-group "[]"
@@ -40,24 +36,23 @@ setup_system() {
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>3']"
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>4']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
     gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>f']"
     gsettings set org.gnome.desktop.wm.preferences auto-raise true
-    gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-    gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
-    gsettings set org.gnome.mutter attach-modal-dialogs false
-    gsettings set org.gnome.mutter center-new-windows true
+    gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
     gsettings set org.gnome.mutter dynamic-workspaces false
     gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
     gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
     gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 22.0
     gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 6.0
-    gsettings set org.gnome.settings-daemon.plugins.media-keys screen-reader "[]"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys screenreader "[]"
     gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
     gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1800
-    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
     gsettings set org.gnome.shell app-picker-layout "[]"
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
@@ -87,7 +82,7 @@ setup_extensions() {
   pipx install gnome-extensions-cli --system-site-packages
 
   gnome-extensions install -f $EXTENSIONS_DIR/resource-monitor\@goransimic.zip
-  gnome-extensions install -f $EXTENSIONS_DIR/window-mover\@goransimic.zip
+  gnome-extensions install -f $EXTENSIONS_DIR/window-sizer\@goransimic.zip
 
   gext install current-monitor-window-app-switcher@thmatosbr
   gext install easy_docker_containers@red.software.systems
@@ -181,41 +176,11 @@ setup_lazydocker() {
   update-desktop-database ~/.local/share/applications
 }
 
-setup_flameshot() {
-  echo "Setup Flameshot..."
-  sudo apt-get install -y flameshot
-  mkdir -p ~/.config/flameshot
-  cp $CONFIGS_DIR/flameshot.ini ~/.config/flameshot/flameshot.ini
-
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'sh -c -- "flameshot gui"'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>c'
-}
-
 setup_alacritty() {
   echo "Setup Alacritty..."
   sudo apt-get install -y alacritty
   mkdir -p ~/.config/alacritty
   cp $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
-}
-
-setup_cursor() {
-  echo "Setup Cursor..."
-  CURSOR_URL=$(curl -s https://cursor.com/api/download?platform=linux-x64&releaseTrack=latest | jq -r '.downloadUrl')
-  curl -sLo /tmp/cursor.appimage $CURSOR_URL
-  chmod +x /tmp/cursor.appimage
-  cd /tmp && ./cursor.appimage --appimage-extract && cd - > /dev/null
-  sudo rm -rf /opt/cursor
-  sudo mv /tmp/squashfs-root /opt/cursor
-  sudo chmod 4755 /opt/cursor/usr/share/cursor/chrome-sandbox
-  sudo chown -R root:root /opt/cursor
-  sudo ln -sf /opt/cursor/AppRun /usr/local/bin/cursor
-  rm /tmp/cursor.appimage
-  mkdir -p ~/.local/share/applications
-  cp $LAUNCHERS_DIR/cursor.desktop ~/.local/share/applications/cursor.desktop
-  update-desktop-database ~/.local/share/applications
-
 }
 
 setup_junction() {
@@ -244,9 +209,7 @@ setup_cli() {
 }
 
 setup_desktop() {
-  setup_flameshot
   setup_alacritty
-  setup_cursor
   setup_junction
 }
 
@@ -254,11 +217,6 @@ setup_all() {
   setup_core
   setup_cli
   [[ $RUNNING_GNOME ]] && setup_desktop
-}
-
-update() {
-  echo "Updating Ubuntu Setup..."
-  git -C $ROOT_DIR pull
 }
 
 case $1 in
@@ -272,9 +230,6 @@ case $1 in
   "mise") setup_mise ;;
   "lazygit") setup_lazygit ;;
   "lazydocker") setup_lazydocker ;;
-  "flameshot") [[ $RUNNING_GNOME ]] && setup_flameshot ;;
   "alacrity") [[ $RUNNING_GNOME ]] && setup_alacritty ;;
-  "cursor") setup_cursor ;;
   "junction") [[ $RUNNING_GNOME ]] && setup_junction ;;
-  "update") update ;;
 esac
