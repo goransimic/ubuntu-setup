@@ -1,14 +1,14 @@
 # Ubuntu Setup
 
-Install and configure Ubuntu system
+Setup Ubuntu system
 
-## Automatic Installation
+## Automatic Setup
 
 ```sh
 curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/install.sh | bash -s -- all|core|cli|desktop|system|extensions|gestures|zsh|zellij|docker|mise|lazygit|lazydocker|alacritty|junction
 ```
 
-## Manual Installation
+## Manual Setup
 
 ### System
 
