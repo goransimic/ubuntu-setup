@@ -218,7 +218,7 @@ setup_all() {
   [[ $RUNNING_GNOME ]] && setup_desktop
 }
 
-echo "Installing Ubuntu Setup..."
+echo "Starting Ubuntu Setup..."
 sudo apt-get update > /dev/null
 sudo apt-get install -y git > /dev/null
 git clone -q https://github.com/goransimic/ubuntu-setup.git $ROOT_DIR
