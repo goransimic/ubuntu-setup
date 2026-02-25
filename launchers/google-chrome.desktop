@@ -4,21 +4,21 @@ Name=Google Chrome
 Comment=Access the Internet
 Categories=Network;WebBrowser;
 Icon=google-chrome
-Exec=google-chrome --profile-directory="Default" %U
+Exec=google-chrome-stable --profile-directory="Default" %U
 MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
 Terminal=false
 StartupNotify=true
 StartupWMClass=google-chrome
-Actions=NewWindow;NewPrivateWindow;WorkProfile;
+Actions=new-window;new-private-window;work-profile;
 
-[Desktop Action NewWindow]
+[Desktop Action new-window]
 Name=New Window
 Exec=google-chrome --new-window --profile-directory="Default" %U
 
-[Desktop Action NewPrivateWindow]
+[Desktop Action new-private-window]
 Name=New Incognito Window
 Exec=google-chrome --incognito --profile-directory="Default" %U
 
-[Desktop Action WorkProfile]
+[Desktop Action work-profile]
 Name=Work Profile
 Exec=google-chrome --profile-directory="Profile 1" %U

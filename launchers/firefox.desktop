@@ -1,26 +1,29 @@
 [Desktop Entry]
 Type=Application
 Name=Firefox
-Comment=Browse the World Wide Web
+Comment=Fast and private browser
 Categories=Network;WebBrowser;
 Icon=/snap/firefox/current/default256.png
-Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox %U
+Exec=/snap/bin/firefox %U
 MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
 Terminal=false
 StartupNotify=true
-StartupWMClass=firefox
+StartupWMClass=firefox_firefox
+X-SnapAppName=firefox
 X-SnapInstanceName=firefox
-Actions=NewWindow;NewPrivateWindow;WorkProfile;
+Actions=new-window;new-private-window;work-profile;
 
-[Desktop Action NewWindow]
+[Desktop Action new-window]
 Name=New Window
-Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -new-window
+Exec=/snap/bin/firefox --new-window %U
+X-SnapAppName=firefox
 
-[Desktop Action NewPrivateWindow]
+[Desktop Action new-private-window]
 Name=New Private Window
-Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -private-window
+Exec=/snap/bin/firefox --private-window %U
+X-SnapAppName=firefox
 
-[Desktop Action WorkProfile]
+[Desktop Action work-profile]
 Name=Work Profile
-Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop /snap/bin/firefox -P Work
-
+Exec=/snap/bin/firefox -P Work
+X-SnapAppName=firefox
