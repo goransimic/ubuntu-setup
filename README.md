@@ -129,9 +129,10 @@ chsh -s /bin/zsh
 git clone -q https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 git clone -q https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone -q https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone -q https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 curl -sLo ~/.zshrc https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zshrc
+curl -sLo ~/.zprofile https://raw.githubusercontent.com/goransimic/ubuntu-setup/refs/heads/master/configs/zprofile
 ```
 
 ### Zellij
