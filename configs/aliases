@@ -5,7 +5,9 @@ alias la='ls -Ah'
 alias ll='ls -lh'
 alias q='exit'
 alias c='clear'
+alias reload='source ~/.zprofile && source ~/.zshrc'
 alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && flatpak update -y'
+alias setup='curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/setup.sh | bash -s --'
 
 # Tools
 alias z='zellij'
