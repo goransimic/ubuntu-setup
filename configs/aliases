@@ -10,7 +10,7 @@ alias update='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -
 alias setup='curl -s https://raw.githubusercontent.com/goransimic/ubuntu-setup/master/setup.sh | bash -s --'
 
 # Tools
-alias z='zellij'
+alias zj='zellij'
 alias g='git'
 alias d='docker'
 alias lzg='lazygit'
