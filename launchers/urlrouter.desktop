@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=URL Router
-Exec=urlrouter %U
-MimeType=x-scheme-handler/http;x-scheme-handler/https;
-NoDisplay=true
