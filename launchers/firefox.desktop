@@ -5,13 +5,12 @@ Comment=Fast and private browser
 Categories=Network;WebBrowser;
 Icon=/snap/firefox/current/default256.png
 Exec=/snap/bin/firefox %U
-MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
-Terminal=false
+MimeType=application/pdf;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
 StartupNotify=true
 StartupWMClass=firefox_firefox
 X-SnapAppName=firefox
 X-SnapInstanceName=firefox
-Actions=new-window;new-private-window;work-profile;
+Actions=new-window;new-private-window;domonda-profile;
 
 [Desktop Action new-window]
 Name=New Window
@@ -23,7 +22,7 @@ Name=New Private Window
 Exec=/snap/bin/firefox --private-window %U
 X-SnapAppName=firefox
 
-[Desktop Action work-profile]
-Name=Work Profile
-Exec=/snap/bin/firefox -P Work
+[Desktop Action domonda-profile]
+Name=Domonda Profile
+Exec=/snap/bin/firefox -P Domonda
 X-SnapAppName=firefox

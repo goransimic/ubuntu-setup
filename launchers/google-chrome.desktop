@@ -5,20 +5,19 @@ Comment=Access the Internet
 Categories=Network;WebBrowser;
 Icon=google-chrome
 Exec=google-chrome-stable --profile-directory="Default" %U
-MimeType=text/html;text/xml;image/gif;image/heic;image/jpeg;image/png;image/svg;image/webp;video/webm;application/pdf;application/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
-Terminal=false
+MimeType=application/pdf;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;x-scheme-handler/webcal;
 StartupNotify=true
 StartupWMClass=google-chrome
-Actions=new-window;new-private-window;work-profile;
+Actions=new-window;new-private-window;domonda-profile;
 
 [Desktop Action new-window]
 Name=New Window
-Exec=google-chrome --new-window --profile-directory="Default" %U
+Exec=google-chrome-stable --new-window --profile-directory="Default" %U
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
-Exec=google-chrome --incognito --profile-directory="Default" %U
+Exec=google-chrome-stable --incognito --profile-directory="Default" %U
 
-[Desktop Action work-profile]
-Name=Work Profile
-Exec=google-chrome --profile-directory="Profile 1" %U
+[Desktop Action domonda-profile]
+Name=Domonda Profile
+Exec=google-chrome-stable --profile-directory="Profile 1" %U
