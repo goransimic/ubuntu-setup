@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Firefox
+# DEFAULT_BROWSER="firefox"
+# PROFILE_DEFAULT=(-P "Default")
+# PROFILE_WORK=(-P "Work")
+
+# Google Chrome
+DEFAULT_BROWSER="google-chrome"
+PROFILE_DEFAULT=(--profile-directory="Default")
+PROFILE_WORK=(--profile-directory="Profile 1")
+
+if [[ "$1" == *domonda* ]]; then
+  PROFILE=("${PROFILE_WORK[@]}")
+else
+  PROFILE=("${PROFILE_DEFAULT[@]}")
+fi
+
+nohup "$DEFAULT_BROWSER" "${PROFILE[@]}" "$1" >/dev/null 2>&1 &
