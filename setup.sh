@@ -2,10 +2,8 @@
 
 ROOT_DIR=/tmp/ubuntu-setup
 CONFIGS_DIR=$ROOT_DIR/configs
-EXTENSIONS_DIR=$ROOT_DIR/extensions
 ICONS_DIR=$ROOT_DIR/icons
 LAUNCHERS_DIR=$ROOT_DIR/launchers
-SCRIPTS_DIR=$ROOT_DIR/scripts
 
 RUNNING_GNOME=$([[ $XDG_CURRENT_DESKTOP == *"GNOME"* ]] && echo true || echo false)
 
@@ -66,16 +64,6 @@ setup_system() {
   fi
 }
 
-setup_extensions() {
-  echo "Setup Extensions..."
-
-  cp -v $EXTENSIONS_DIR/resource-monitor@goransimic ~/.local/share/gnome-shell/extensions/
-  cp -v $EXTENSIONS_DIR/window-sizer@goransimic ~/.local/share/gnome-shell/extensions/
-
-  sudo cp -v ~/.local/share/gnome-shell/extensions/window-sizer@goransimic/schemas/org.gnome.shell.extensions.window-sizer.gschema.xml /usr/share/glib-2.0/schemas/
-  sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-}
-
 setup_gestures() {
   echo "Setup Gestures..."
 
@@ -100,8 +88,8 @@ setup_zsh() {
   git clone -q https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   git clone -q https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
   git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  cp -v $CONFIGS_DIR/zshrc ~/.zshrc
   cp -v $CONFIGS_DIR/zprofile ~/.zprofile
+  cp -v $CONFIGS_DIR/zshrc ~/.zshrc
 }
 
 setup_zellij() {
@@ -169,20 +157,8 @@ setup_alacritty() {
   cp -v $CONFIGS_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
 }
 
-setup_junction() {
-  echo "Setup Junction..."
-
-  sudo install -v $SCRIPTS_DIR/junction /usr/local/bin
-  mkdir -pv ~/.local/share/{applications,icons}
-  cp -v $ICONS_DIR/junction.png ~/.local/share/icons/junction.png
-  cp -v $LAUNCHERS_DIR/junction.desktop ~/.local/share/applications/junction.desktop
-  cp -v $CONFIGS_DIR/mimeapps.list ~/.config/mimeapps.list
-  update-desktop-database ~/.local/share/applications
-}
-
 setup_core() {
   setup_system
-  [[ $RUNNING_GNOME ]] && setup_extensions
   [[ $RUNNING_GNOME ]] && setup_gestures
 }
 
@@ -197,7 +173,6 @@ setup_cli() {
 
 setup_desktop() {
   setup_alacritty
-  setup_junction
 }
 
 setup_all() {
@@ -219,7 +194,6 @@ case $1 in
   "cli") setup_cli ;;
   "desktop") [[ $RUNNING_GNOME ]] && setup_desktop ;;
   "system") setup_system ;;
-  "extensions") [[ $RUNNING_GNOME ]] && setup_extensions ;;
   "gestures") [[ $RUNNING_GNOME ]] && setup_gestures ;;
   "zsh") setup_zsh ;;
   "zellij") setup_zellij ;;
@@ -228,7 +202,6 @@ case $1 in
   "lazygit") setup_lazygit ;;
   "lazydocker") setup_lazydocker ;;
   "alacrity") [[ $RUNNING_GNOME ]] && setup_alacritty ;;
-  "junction") [[ $RUNNING_GNOME ]] && setup_junction ;;
 esac
 
 cd - > /dev/null
